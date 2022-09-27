@@ -1431,7 +1431,6 @@ class _ResultScreenState extends State<ResultScreen> {
         yValueMapper: (ChartModel sales, _) => sales.c0,
         color: AppColors.yellowLv1,
         name: 'Penyakit Akut',
-        borderRadius: BorderRadius.circular(3),
       ),
       StackedColumnSeries<ChartModel, String>(
         dataSource: caseByDiseases,
@@ -1439,7 +1438,6 @@ class _ResultScreenState extends State<ResultScreen> {
         yValueMapper: (ChartModel sales, _) => sales.c1,
         color: AppColors.redLv1,
         name: 'Penyakit Kronis',
-        borderRadius: BorderRadius.circular(3),
       ),
     ];
   }
@@ -1495,7 +1493,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   SizedBox(width: 6),
                   Text(
                     higestCaseC0.length == 1
-                        ? '${higestCaseC0.first.x.namaPenyakit} (${higestCaseC0.first.c0}))'
+                        ? '${higestCaseC0.first.x.namaPenyakit} (${higestCaseC0.first.c0})'
                         : '${higestCaseC0.first.x.namaPenyakit} (${higestCaseC0.first.c0}) & ${higestCaseC0.length - 1} lainnya',
                     style: TextStyle(
                       color: Colors.white,
@@ -1519,7 +1517,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   SizedBox(width: 6),
                   Text(
                     higestCaseC1.length == 1
-                        ? '${higestCaseC1.first.x.namaPenyakit} (${higestCaseC1.first.c1}))'
+                        ? '${higestCaseC1.first.x.namaPenyakit} (${higestCaseC1.first.c1})'
                         : '${higestCaseC1.first.x.namaPenyakit} (${higestCaseC1.first.c1}) & ${higestCaseC1.length - 1} lainnya',
                     style: TextStyle(
                       color: Colors.white,
