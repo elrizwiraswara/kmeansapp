@@ -1,0 +1,446 @@
+﻿[
+    {
+     "nama_penyakit": "AIDS",
+     "kode_penyakit": 1
+    },
+    {
+     "nama_penyakit": "ANC",
+     "kode_penyakit": 2
+    },
+    {
+     "nama_penyakit": "ANC MUAL",
+     "kode_penyakit": 3
+    },
+    {
+     "nama_penyakit": "ANGINA PECTORIS",
+     "kode_penyakit": 4
+    },
+    {
+     "nama_penyakit": "ANGIOEDEMA",
+     "kode_penyakit": 5
+    },
+    {
+     "nama_penyakit": "ARITMIA",
+     "kode_penyakit": 6
+    },
+    {
+     "nama_penyakit": "ASAM LAMBUNG",
+     "kode_penyakit": 7
+    },
+    {
+     "nama_penyakit": "ASAM URAT",
+     "kode_penyakit": 8
+    },
+    {
+     "nama_penyakit": "ASMA",
+     "kode_penyakit": 9
+    },
+    {
+     "nama_penyakit": "BATU EMPEDUH",
+     "kode_penyakit": 10
+    },
+    {
+     "nama_penyakit": "BATU GINJAL",
+     "kode_penyakit": 11
+    },
+    {
+     "nama_penyakit": "BATU SALURAN KEMIH",
+     "kode_penyakit": 12
+    },
+    {
+     "nama_penyakit": "BATUK",
+     "kode_penyakit": 13
+    },
+    {
+     "nama_penyakit": "BRONKITIS",
+     "kode_penyakit": 14
+    },
+    {
+     "nama_penyakit": "BULIMIA NERVOSA",
+     "kode_penyakit": 15
+    },
+    {
+     "nama_penyakit": "CACAR AIR",
+     "kode_penyakit": 16
+    },
+    {
+     "nama_penyakit": "DAKRIOSSISTIS",
+     "kode_penyakit": 17
+    },
+    {
+     "nama_penyakit": "DBD",
+     "kode_penyakit": 18
+    },
+    {
+     "nama_penyakit": "DEFISIENSI VITAMIN B1",
+     "kode_penyakit": 19
+    },
+    {
+     "nama_penyakit": "DEHIDRASI",
+     "kode_penyakit": 20
+    },
+    {
+     "nama_penyakit": "DEMAM",
+     "kode_penyakit": 21
+    },
+    {
+     "nama_penyakit": "DIABETES",
+     "kode_penyakit": 22
+    },
+    {
+     "nama_penyakit": "DIARE",
+     "kode_penyakit": 23
+    },
+    {
+     "nama_penyakit": "DISENTRI",
+     "kode_penyakit": 24
+    },
+    {
+     "nama_penyakit": "EFUSIPLEURA",
+     "kode_penyakit": 25
+    },
+    {
+     "nama_penyakit": "EKTROPIAN",
+     "kode_penyakit": 26
+    },
+    {
+     "nama_penyakit": "ENDOMETRIOSIS",
+     "kode_penyakit": 27
+    },
+    {
+     "nama_penyakit": "FLU",
+     "kode_penyakit": 28
+    },
+    {
+     "nama_penyakit": "FRAKTUR HUMERUS",
+     "kode_penyakit": 29
+    },
+    {
+     "nama_penyakit": "GAGAL GINJAL",
+     "kode_penyakit": 30
+    },
+    {
+     "nama_penyakit": "GAGAL GINJAL AKUT",
+     "kode_penyakit": 31
+    },
+    {
+     "nama_penyakit": "GAGAL GINJAL KRONIK",
+     "kode_penyakit": 32
+    },
+    {
+     "nama_penyakit": "GAGAL JANTUNG",
+     "kode_penyakit": 33
+    },
+    {
+     "nama_penyakit": "GASTROPPARESIS",
+     "kode_penyakit": 34
+    },
+    {
+     "nama_penyakit": "GIARDIASIS",
+     "kode_penyakit": 35
+    },
+    {
+     "nama_penyakit": "GINJAL",
+     "kode_penyakit": 36
+    },
+    {
+     "nama_penyakit": "GIZI BURUK",
+     "kode_penyakit": 37
+    },
+    {
+     "nama_penyakit": "GUMPALAN LEMAK KELOPAK MATA",
+     "kode_penyakit": 38
+    },
+    {
+     "nama_penyakit": "HEAT STROKE",
+     "kode_penyakit": 39
+    },
+    {
+     "nama_penyakit": "HEMOFILIA",
+     "kode_penyakit": 40
+    },
+    {
+     "nama_penyakit": "HEPATITIS",
+     "kode_penyakit": 41
+    },
+    {
+     "nama_penyakit": "HERNIA",
+     "kode_penyakit": 42
+    },
+    {
+     "nama_penyakit": "HERPER MULUT",
+     "kode_penyakit": 43
+    },
+    {
+     "nama_penyakit": "HIDROKEL TESTIS",
+     "kode_penyakit": 44
+    },
+    {
+     "nama_penyakit": "HIPERTENSI",
+     "kode_penyakit": 45
+    },
+    {
+     "nama_penyakit": "IMPETIGO",
+     "kode_penyakit": 46
+    },
+    {
+     "nama_penyakit": "INFEKSI CACING",
+     "kode_penyakit": 47
+    },
+    {
+     "nama_penyakit": "INFEKSI TELINGA",
+     "kode_penyakit": 48
+    },
+    {
+     "nama_penyakit": "INFEKSI URETRA",
+     "kode_penyakit": 49
+    },
+    {
+     "nama_penyakit": "INKONTINENSIA USUS",
+     "kode_penyakit": 50
+    },
+    {
+     "nama_penyakit": "INVAGINASI USUS",
+     "kode_penyakit": 51
+    },
+    {
+     "nama_penyakit": "ISPA",
+     "kode_penyakit": 52
+    },
+    {
+     "nama_penyakit": "ITP",
+     "kode_penyakit": 53
+    },
+    {
+     "nama_penyakit": "JANTUNG",
+     "kode_penyakit": 54
+    },
+    {
+     "nama_penyakit": "KALAZION",
+     "kode_penyakit": 55
+    },
+    {
+     "nama_penyakit": "KANKER OTAK",
+     "kode_penyakit": 56
+    },
+    {
+     "nama_penyakit": "KANKER PARU",
+     "kode_penyakit": 57
+    },
+    {
+     "nama_penyakit": "KANKER PAYUDARA",
+     "kode_penyakit": 58
+    },
+    {
+     "nama_penyakit": "KANKER PROSTAT",
+     "kode_penyakit": 59
+    },
+    {
+     "nama_penyakit": "KATARAK",
+     "kode_penyakit": 60
+    },
+    {
+     "nama_penyakit": "KEGUGURAN",
+     "kode_penyakit": 61
+    },
+    {
+     "nama_penyakit": "KEHAMILAN EKTOPIK",
+     "kode_penyakit": 62
+    },
+    {
+     "nama_penyakit": "KEJANG DEMAM",
+     "kode_penyakit": 63
+    },
+    {
+     "nama_penyakit": "KERION",
+     "kode_penyakit": 64
+    },
+    {
+     "nama_penyakit": "KISTA BARTOLINI",
+     "kode_penyakit": 65
+    },
+    {
+     "nama_penyakit": "KOLESTROL",
+     "kode_penyakit": 66
+    },
+    {
+     "nama_penyakit": "KOLOREKTAL",
+     "kode_penyakit": 67
+    },
+    {
+     "nama_penyakit": "LEUKIMIA",
+     "kode_penyakit": 68
+    },
+    {
+     "nama_penyakit": "LUKA IRIS",
+     "kode_penyakit": 69
+    },
+    {
+     "nama_penyakit": "MALARIA",
+     "kode_penyakit": 70
+    },
+    {
+     "nama_penyakit": "MUNTABER",
+     "kode_penyakit": 71
+    },
+    {
+     "nama_penyakit": "NYERI KEPALA KLUSTER",
+     "kode_penyakit": 72
+    },
+    {
+     "nama_penyakit": "PATAH TULANG PAHA",
+     "kode_penyakit": 73
+    },
+    {
+     "nama_penyakit": "PEMBULUH ARTERI",
+     "kode_penyakit": 74
+    },
+    {
+     "nama_penyakit": "PLASENTA PREVIA",
+     "kode_penyakit": 75
+    },
+    {
+     "nama_penyakit": "PNEUMONIA",
+     "kode_penyakit": 76
+    },
+    {
+     "nama_penyakit": "POLIO",
+     "kode_penyakit": 77
+    },
+    {
+     "nama_penyakit": "POLIP HIDUNG",
+     "kode_penyakit": 78
+    },
+    {
+     "nama_penyakit": "PROGERIA",
+     "kode_penyakit": 79
+    },
+    {
+     "nama_penyakit": "PSCA",
+     "kode_penyakit": 80
+    },
+    {
+     "nama_penyakit": "RABUN JAUH",
+     "kode_penyakit": 81
+    },
+    {
+     "nama_penyakit": "RADANG GUSI",
+     "kode_penyakit": 82
+    },
+    {
+     "nama_penyakit": "RADANG KELENJAR",
+     "kode_penyakit": 83
+    },
+    {
+     "nama_penyakit": "RADANG LAMBUNG",
+     "kode_penyakit": 84
+    },
+    {
+     "nama_penyakit": "RADANG PARU",
+     "kode_penyakit": 85
+    },
+    {
+     "nama_penyakit": "RADANG SALURAN KELAMIN",
+     "kode_penyakit": 86
+    },
+    {
+     "nama_penyakit": "RADANG TELINGA",
+     "kode_penyakit": 87
+    },
+    {
+     "nama_penyakit": "RADANG TENGGOROKAN",
+     "kode_penyakit": 88
+    },
+    {
+     "nama_penyakit": "REMATIK",
+     "kode_penyakit": 89
+    },
+    {
+     "nama_penyakit": "RUPTUR GINJAL",
+     "kode_penyakit": 90
+    },
+    {
+     "nama_penyakit": "SAKIT GIGI",
+     "kode_penyakit": 91
+    },
+    {
+     "nama_penyakit": "SALURAN EMPEDU",
+     "kode_penyakit": 92
+    },
+    {
+     "nama_penyakit": "SARAF TERJEPIT",
+     "kode_penyakit": 93
+    },
+    {
+     "nama_penyakit": "SELUBUNG SARAF",
+     "kode_penyakit": 94
+    },
+    {
+     "nama_penyakit": "SEQ STROKE INFARK",
+     "kode_penyakit": 95
+    },
+    {
+     "nama_penyakit": "SESAK",
+     "kode_penyakit": 96
+    },
+    {
+     "nama_penyakit": "STONE MANS DISEASE",
+     "kode_penyakit": 97
+    },
+    {
+     "nama_penyakit": "STROKE",
+     "kode_penyakit": 98
+    },
+    {
+     "nama_penyakit": "TABUNG SARAF",
+     "kode_penyakit": 99
+    },
+    {
+     "nama_penyakit": "TB PARU",
+     "kode_penyakit": 100
+    },
+    {
+     "nama_penyakit": "TBC",
+     "kode_penyakit": 101
+    },
+    {
+     "nama_penyakit": "TIFUS",
+     "kode_penyakit": 102
+    },
+    {
+     "nama_penyakit": "TKL",
+     "kode_penyakit": 103
+    },
+    {
+     "nama_penyakit": "TUMOR",
+     "kode_penyakit": 104
+    },
+    {
+     "nama_penyakit": "TUMOR GINJAL",
+     "kode_penyakit": 105
+    },
+    {
+     "nama_penyakit": "TUMOR JINAK",
+     "kode_penyakit": 106
+    },
+    {
+     "nama_penyakit": "TUMOR JINAK PAYUDARA",
+     "kode_penyakit": 107
+    },
+    {
+     "nama_penyakit": "TUMOR PD",
+     "kode_penyakit": 108
+    },
+    {
+     "nama_penyakit": "USUS BUNTU",
+     "kode_penyakit": 109
+    },
+    {
+     "nama_penyakit": "VAGINOSIS BAKTERI",
+     "kode_penyakit": 110
+    },
+    {
+     "nama_penyakit": "VERTIGO",
+     "kode_penyakit": 111
+    }
+   ]
