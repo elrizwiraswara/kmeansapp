@@ -1,0 +1,182 @@
+﻿[
+    {
+     "id": 1,
+     "nama": "NANI",
+     "jenis_kelamin": "P",
+     "umur": 30,
+     "kode_penyakit": 21,
+     "nama_penyakit": "DEMAM",
+     "lama_mengidap": 6
+    },
+    {
+     "id": 2,
+     "nama": "SRI WINARTI",
+     "jenis_kelamin": "P",
+     "umur": 32,
+     "kode_penyakit": 91,
+     "nama_penyakit": "SAKIT GIGI",
+     "lama_mengidap": 12
+    },
+    {
+     "id": 3,
+     "nama": "ERLIAN",
+     "jenis_kelamin": "L",
+     "umur": 33,
+     "kode_penyakit": 13,
+     "nama_penyakit": "BATUK",
+     "lama_mengidap": 18
+    },
+    {
+     "id": 4,
+     "nama": "SARMILA",
+     "jenis_kelamin": "P",
+     "umur": 27,
+     "kode_penyakit": 2,
+     "nama_penyakit": "ANC",
+     "lama_mengidap": 19
+    },
+    {
+     "id": 5,
+     "nama": "ADE OKTAFRIANI",
+     "jenis_kelamin": "P",
+     "umur": 21,
+     "kode_penyakit": 91,
+     "nama_penyakit": "SAKIT GIGI",
+     "lama_mengidap": 6
+    },
+    {
+     "id": 6,
+     "nama": "RASINEM",
+     "jenis_kelamin": "P",
+     "umur": 31,
+     "kode_penyakit": 18,
+     "nama_penyakit": "DBD",
+     "lama_mengidap": 11
+    },
+    {
+     "id": 7,
+     "nama": "KOMARIA",
+     "jenis_kelamin": "P",
+     "umur": 30,
+     "kode_penyakit": 70,
+     "nama_penyakit": "MALARIA",
+     "lama_mengidap": 12
+    },
+    {
+     "id": 8,
+     "nama": "YUDAH GUSTIANA",
+     "jenis_kelamin": "L",
+     "umur": 18,
+     "kode_penyakit": 101,
+     "nama_penyakit": "TBC",
+     "lama_mengidap": 182
+    },
+    {
+     "id": 9,
+     "nama": "HILMI",
+     "jenis_kelamin": "P",
+     "umur": 9,
+     "kode_penyakit": 16,
+     "nama_penyakit": "CACAR AIR",
+     "lama_mengidap": 17
+    },
+    {
+     "id": 10,
+     "nama": "ISTI HAIRANI",
+     "jenis_kelamin": "P",
+     "umur": 17,
+     "kode_penyakit": 102,
+     "nama_penyakit": "TIFUS",
+     "lama_mengidap": 10
+    },
+    {
+     "id": 11,
+     "nama": "SUHERLAN",
+     "jenis_kelamin": "L",
+     "umur": 41,
+     "kode_penyakit": 76,
+     "nama_penyakit": "PNEUMONIA",
+     "lama_mengidap": 20
+    },
+    {
+     "id": 12,
+     "nama": "ZASKIA ADELIA",
+     "jenis_kelamin": "P",
+     "umur": 8,
+     "kode_penyakit": 91,
+     "nama_penyakit": "SAKIT GIGI",
+     "lama_mengidap": 6
+    },
+    {
+     "id": 13,
+     "nama": "YANA",
+     "jenis_kelamin": "P",
+     "umur": 9,
+     "kode_penyakit": 21,
+     "nama_penyakit": "DEMAM",
+     "lama_mengidap": 7
+    },
+    {
+     "id": 14,
+     "nama": "ANGGUN",
+     "jenis_kelamin": "P",
+     "umur": 7,
+     "kode_penyakit": 13,
+     "nama_penyakit": "BATUK",
+     "lama_mengidap": 14
+    },
+    {
+     "id": 15,
+     "nama": "NIA DANIA",
+     "jenis_kelamin": "P",
+     "umur": 23,
+     "kode_penyakit": 3,
+     "nama_penyakit": "ANC MUAL",
+     "lama_mengidap": 84
+    },
+    {
+     "id": 16,
+     "nama": "HERMAN",
+     "jenis_kelamin": "L",
+     "umur": 52,
+     "kode_penyakit": 41,
+     "nama_penyakit": "HEPATITIS",
+     "lama_mengidap": 105
+    },
+    {
+     "id": 17,
+     "nama": "EGA RIAN SAPUTRA",
+     "jenis_kelamin": "L",
+     "umur": 10,
+     "kode_penyakit": 91,
+     "nama_penyakit": "SAKIT GIGI",
+     "lama_mengidap": 4
+    },
+    {
+     "id": 18,
+     "nama": "YUSNIATAI",
+     "jenis_kelamin": "P",
+     "umur": 9,
+     "kode_penyakit": 77,
+     "nama_penyakit": "POLIO",
+     "lama_mengidap": 18
+    },
+    {
+     "id": 19,
+     "nama": "IMAM",
+     "jenis_kelamin": "L",
+     "umur": 11,
+     "kode_penyakit": 18,
+     "nama_penyakit": "DBD",
+     "lama_mengidap": 11
+    },
+    {
+     "id": 20,
+     "nama": "SURIYANI",
+     "jenis_kelamin": "P",
+     "umur": 8,
+     "kode_penyakit": 24,
+     "nama_penyakit": "DISENTRI",
+     "lama_mengidap": 16
+    }
+   ]

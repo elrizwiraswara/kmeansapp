@@ -1,5 +1,4 @@
-import 'dart:io';
-import 'dart:convert';
+// ignore: avoid_web_libraries_in_flutter, unused_import
 import 'dart:html' as html;
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:excel_dart/excel_dart.dart';
@@ -35,23 +34,29 @@ class _InputScreenState extends State<InputScreen> {
   bool editData = false;
   int? dataNo;
 
+  List<PasienModel> selectedData = [];
+
   // @override
   // void initState() {
   //   super.initState();
   //   print('CHECK INIT');
-  //   initialize();
+  //   init();
+  // }
+
+  // Future<void> init() async {
+  //   await getData();
+  //   await initialize();
   // }
 
   // Future<void> initialize() async {
-  //   iterasiDataPenyakit.clear();
+  //   clearData();
 
-  //   await getData();
   //   await analyze();
   //   await sumCaseByDiseases();
   //   await sumHigestCase();
 
   //   setState(() {});
-  //   // printFinalResult();
+  //   printFinalResult();
   // }
 
   String excelCellHeader(int i) {
@@ -264,7 +269,7 @@ class _InputScreenState extends State<InputScreen> {
     );
   }
 
-  void onTapDelete(int i) async {
+  void onTapDelete(List<PasienModel> data) async {
     final status = await showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -291,7 +296,9 @@ class _InputScreenState extends State<InputScreen> {
               ),
               SizedBox(height: 6),
               Text(
-                'apakah kamu yakin ingin menghapus data ${dataPasien[i].nama}?',
+                data.length == 1
+                    ? 'apakah kamu yakin ingin menghapus data ${data.first.nama}?'
+                    : 'apakah kamu yakin ingin menghapus ${data.length} data ini?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
@@ -328,7 +335,9 @@ class _InputScreenState extends State<InputScreen> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        dataPasien.remove(dataPasien[i]);
+                        for (PasienModel d in data) {
+                          dataPasien.remove(d);
+                        }
                         Navigator.pop(context, 'success');
                       },
                       child: Container(
@@ -359,6 +368,7 @@ class _InputScreenState extends State<InputScreen> {
 
     if (status == 'success') {
       editData = false;
+      selectedData.clear();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -767,7 +777,6 @@ class _InputScreenState extends State<InputScreen> {
                   namaPenyakit.text = suggestion.namaPenyakit;
                   penyakitModel = suggestion;
                   setState(() {});
-                  // TODO DO SOMETHING ON SUGGESTION SELECTED
                 },
                 noItemsFoundBuilder: (context) {
                   return SizedBox.shrink();
@@ -1025,22 +1034,124 @@ class _InputScreenState extends State<InputScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 14),
+            action(),
             SizedBox(height: 18),
             header(),
             Expanded(
-              child: ListView.builder(
-                controller: scrollController,
-                shrinkWrap: true,
-                itemCount: dataPasien.length,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, i) {
-                  return row(i);
-                },
-              ),
+              child: dataPasien.isNotEmpty
+                  ? ListView.builder(
+                      controller: scrollController,
+                      shrinkWrap: true,
+                      itemCount: dataPasien.length,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        return row(i);
+                      },
+                    )
+                  : Center(
+                      child: Text(
+                        '(Kosong)',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white70,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget action() {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () async {
+            if (selectedData.length == 1) {
+              onTapEdit(dataPasien.indexWhere((e) => e == selectedData.first));
+            }
+          },
+          child: Container(
+            width: 85,
+            padding: EdgeInsets.all(6),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: selectedData.length == 1
+                  ? AppColors.yellowLv1.withOpacity(0.10)
+                  : AppColors.blackLv3.withOpacity(0.10),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.edit_note_rounded,
+                  color: selectedData.length == 1
+                      ? AppColors.yellowLv1
+                      : AppColors.blackLv4.withOpacity(0.50),
+                  size: 13,
+                ),
+                SizedBox(width: 6),
+                Text(
+                  'Edit',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: selectedData.length == 1
+                        ? AppColors.yellowLv1
+                        : AppColors.blackLv4.withOpacity(0.50),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(width: 8),
+        GestureDetector(
+          onTap: () async {
+            onTapDelete(selectedData);
+          },
+          child: Container(
+            width: 85,
+            padding: EdgeInsets.all(6),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: selectedData.length >= 1
+                  ? AppColors.redLv1.withOpacity(0.10)
+                  : AppColors.blackLv3.withOpacity(0.10),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.delete_rounded,
+                  color: selectedData.length >= 1
+                      ? AppColors.redLv1
+                      : AppColors.blackLv4.withOpacity(0.50),
+                  size: 13,
+                ),
+                SizedBox(width: 6),
+                Text(
+                  'Hapus',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: selectedData.length >= 1
+                        ? AppColors.redLv1
+                        : AppColors.blackLv4.withOpacity(0.50),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(width: 12),
+      ],
     );
   }
 
@@ -1058,6 +1169,24 @@ class _InputScreenState extends State<InputScreen> {
       child: Row(
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            width: 56,
+            child: Checkbox(
+              activeColor: AppColors.blackLv1,
+              value: selectedData.contains(dataPasien[i]),
+              visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+              onChanged: (value) {
+                if (value != null) {
+                  if (value && !selectedData.contains(dataPasien[i])) {
+                    selectedData.add(dataPasien[i]);
+                  } else {
+                    selectedData.remove(dataPasien[i]);
+                  }
+                  setState(() {});
+                }
+              },
+            ),
+          ),
           Expanded(
             flex: 1,
             child: Container(
@@ -1148,49 +1277,6 @@ class _InputScreenState extends State<InputScreen> {
               ),
             ),
           ),
-          Container(
-            width: 56,
-            alignment: Alignment.centerLeft,
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    onTapEdit(i);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: AppColors.yellowLv1.withOpacity(0.10),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Icon(
-                      Icons.edit_note_rounded,
-                      color: AppColors.yellowLv1,
-                      size: 16,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 8),
-                GestureDetector(
-                  onTap: () {
-                    onTapDelete(i);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: AppColors.redLv1.withOpacity(0.10),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Icon(
-                      Icons.delete,
-                      color: AppColors.redLv1,
-                      size: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
@@ -1208,8 +1294,32 @@ class _InputScreenState extends State<InputScreen> {
         ),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            width: 56,
+            child: Checkbox(
+              activeColor: AppColors.blackLv1,
+              value: dataPasien.isNotEmpty &&
+                  selectedData.length == dataPasien.length,
+              visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+              onChanged: (value) {
+                if (value != null) {
+                  if (value) {
+                    if (selectedData.isEmpty) {
+                      selectedData.addAll(dataPasien);
+                    } else {
+                      selectedData.clear();
+                      selectedData.addAll(dataPasien);
+                    }
+                  } else {
+                    selectedData.clear();
+                  }
+                  setState(() {});
+                }
+              },
+            ),
+          ),
           Expanded(
             flex: 1,
             child: Container(
@@ -1304,20 +1414,6 @@ class _InputScreenState extends State<InputScreen> {
                   color: Colors.white.withOpacity(0.87),
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-            ),
-          ),
-          Container(
-            width: 56,
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'AKSI',
-              textAlign: TextAlign.left,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.white.withOpacity(0.87),
-                fontWeight: FontWeight.w600,
               ),
             ),
           ),

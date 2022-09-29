@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmeansapp/input_screen.dart';
 import 'package:kmeansapp/result_screen.dart';
 import 'package:kmeansapp/theme/theme.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Analisa Data Penyakit Pasien Puskesmas Bukit Kayu Kapur',
       debugShowCheckedModeBanner: false,
       theme: appTheme(context),
+      // home: InputScreen(),
       home: ResultScreen(),
     );
   }

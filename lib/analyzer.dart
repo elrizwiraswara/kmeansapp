@@ -120,10 +120,10 @@ Future<void> analyze() async {
   } else {
     List<List<double>> c0 = [
       [
-        dataPasien[(dataPasien.map((e) => e.umur).reduce((x, y) => x + y) /
-                    dataPasien.length)
-                .round()]
-            .umur
+        dataPasien
+            .map((e) => e.umur)
+            .sorted(
+                (a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
             .toDouble(),
         dataPasien
             .map((e) => e.lamaMengidap)
@@ -131,10 +131,10 @@ Future<void> analyze() async {
             .toDouble()
       ],
       [
-        dataPasien[(dataPasien.map((e) => e.umur).reduce((x, y) => x + y) /
-                    dataPasien.length)
-                .round()]
-            .umur
+        dataPasien
+            .map((e) => e.umur)
+            .sorted(
+                (a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
             .toDouble(),
         dataPasien
             .map((e) => e.lamaMengidap)

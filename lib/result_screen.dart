@@ -357,7 +357,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       getTitlesWidget: (data, _) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          data.toString(),
+                          data.toPrecision(3).toString(),
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 10,
@@ -383,7 +383,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       getTitlesWidget: (data, _) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          data.toString(),
+                          data.toPrecision(3).toString(),
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.white,
@@ -399,7 +399,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       getTitlesWidget: (data, _) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          data.toString(),
+                          data.toPrecision(3).toString(),
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.white,
@@ -415,7 +415,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       getTitlesWidget: (data, _) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          data.toString(),
+                          data.toPrecision(3).toString(),
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.white,
