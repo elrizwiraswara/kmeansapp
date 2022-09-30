@@ -60,37 +60,37 @@ class _InputScreenState extends State<InputScreen> {
   // }
 
   String excelCellHeader(int i) {
-    return i == 1
+    return i == 0
         ? 'id'
-        : i == 2
+        : i == 1
             ? 'nama'
-            : i == 3
+            : i == 2
                 ? 'jenis_kelamin'
-                : i == 4
+                : i == 3
                     ? 'umur'
-                    : i == 5
+                    : i == 4
                         ? 'kode_penyakit'
-                        : i == 6
+                        : i == 5
                             ? 'nama_penyakit'
-                            : i == 7
+                            : i == 6
                                 ? 'lama_mengidap'
                                 : '';
   }
 
   dynamic excelCellValue(int j, PasienModel data) {
-    return j == 1
+    return j == 0
         ? data.id
-        : j == 2
+        : j == 1
             ? data.nama
-            : j == 3
+            : j == 2
                 ? data.jenisKelamin
-                : j == 4
+                : j == 3
                     ? data.umur
-                    : j == 5
+                    : j == 4
                         ? data.penyakitModel.kodePenyakit
-                        : j == 6
+                        : j == 5
                             ? data.penyakitModel.namaPenyakit
-                            : j == 7
+                            : j == 6
                                 ? data.lamaMengidap
                                 : '';
   }
@@ -98,9 +98,10 @@ class _InputScreenState extends State<InputScreen> {
   void onTapDownload() async {
     var excel = Excel.createExcel();
 
-    Sheet sheetObject = excel['DATA_PENYAKIT'];
+    Sheet sheetObject = excel['DATA PASIEN'];
+    Sheet sheetObject2 = excel['DATA PENYAKIT'];
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 7; i++) {
       var cell = sheetObject.cell(
         CellIndex.indexByColumnRow(columnIndex: i, rowIndex: 0),
       );
@@ -108,13 +109,33 @@ class _InputScreenState extends State<InputScreen> {
       cell.cellStyle = CellStyle(backgroundColorHex: "#B0B0B0");
     }
 
+    for (int i = 0; i < 2; i++) {
+      var cell = sheetObject2.cell(
+        CellIndex.indexByColumnRow(columnIndex: i, rowIndex: 0),
+      );
+      cell.value = excelCellHeader(i + 4);
+      cell.cellStyle = CellStyle(backgroundColorHex: "#B0B0B0");
+    }
+
     for (int i = 0; i < dataPasien.length; i++) {
-      for (int j = 0; j < 8; j++) {
+      for (int j = 0; j < 7; j++) {
         var cell = sheetObject.cell(
           CellIndex.indexByColumnRow(columnIndex: j, rowIndex: i + 1),
         );
 
         cell.value = excelCellValue(j, dataPasien[i]);
+      }
+    }
+
+    for (int i = 0; i < dataPenyakit.length; i++) {
+      for (int j = 0; j < 2; j++) {
+        var cell = sheetObject2.cell(
+          CellIndex.indexByColumnRow(columnIndex: j, rowIndex: i + 1),
+        );
+
+        cell.value = j == 0
+            ? dataPenyakit[i].kodePenyakit
+            : dataPenyakit[i].namaPenyakit;
       }
     }
 
