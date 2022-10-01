@@ -31,21 +31,24 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Future<void> initialize() async {
-    clearData();
+    if (dataPasien.isNotEmpty) {
+      clearData();
 
-    await analyze();
-    await sumCaseByDiseases();
-    await sumHigestCase();
+      await analyze();
+      await sumCaseByDiseases();
+      await sumHigestCase();
+
+      printFinalResult();
+    }
 
     setState(() {});
-    printFinalResult();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.blackLv1,
-      body: dataPasien.isNotEmpty
+      body: dataPenyakit.isNotEmpty || dataPasien.isNotEmpty
           ? SingleChildScrollView(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -54,12 +57,29 @@ class _ResultScreenState extends State<ResultScreen> {
                   children: [
                     appBar(),
                     SizedBox(height: 18),
-                    body(),
+                    dataPasien.isNotEmpty
+                        ? body()
+                        : Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height - 100,
+                            child: Center(
+                              child: Text(
+                                '(DATA KOSONG)',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          )
                   ],
                 ),
               ),
             )
-          : Center(child: CircularProgressIndicator()),
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 

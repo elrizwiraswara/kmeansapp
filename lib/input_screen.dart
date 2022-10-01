@@ -291,6 +291,10 @@ class _InputScreenState extends State<InputScreen> {
   }
 
   void onTapDelete(List<PasienModel> data) async {
+    if (selectedData.isEmpty) {
+      return;
+    }
+
     final status = await showDialog(
       context: context,
       builder: (context) => Dialog(
@@ -1191,7 +1195,8 @@ class _InputScreenState extends State<InputScreen> {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 56,
+            // width: 56,
+            margin: EdgeInsets.only(right: 18),
             child: Checkbox(
               activeColor: AppColors.blackLv1,
               value: selectedData.contains(dataPasien[i]),
@@ -1318,7 +1323,7 @@ class _InputScreenState extends State<InputScreen> {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 56,
+            margin: EdgeInsets.only(right: 18),
             child: Checkbox(
               activeColor: AppColors.blackLv1,
               value: dataPasien.isNotEmpty &&
