@@ -5,9 +5,8 @@ Demo:
 
 Admin credential
 
-username : admin
-
-password : 123456
+- username : admin
+- password : 123456
 
 ## Getting Started
 
