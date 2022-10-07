@@ -1,6 +1,7 @@
 # Analysis of Patient Disease Data Using K-Means Clustering Algorithm
 
-- [Demo](https://www.elrizwiraswara.com/apps/kmeans)
+Demo:
+- [https://www.elrizwiraswara.com/apps/kmeans](https://www.elrizwiraswara.com/apps/kmeans)
 
 ## Getting Started
 
