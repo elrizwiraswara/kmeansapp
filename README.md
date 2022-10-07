@@ -3,6 +3,10 @@
 Demo:
 - [https://www.elrizwiraswara.com/apps/kmeans](https://www.elrizwiraswara.com/apps/kmeans)
 
+Admin credential
+username : admin
+password : 123456
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
