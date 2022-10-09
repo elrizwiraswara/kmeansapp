@@ -15,11 +15,11 @@ In other words, the K-means algorithm identifies k number of centroids, and then
 The following are the step-by-step of the K-Means method used in this project:
 
 1.	Determine the number of clusters (K). Because in this project there will be a grouping of acute and chronic disease data, the number of K is 2.
-2.	Set the cluster center. The center of the cluster can be determined arbitrarily, but so that the clustering results are better, the authors determine the cluster center by calculating the median of the patient's overall age attributes and the highest and lowest length of time.
+2.	Set the cluster center. The center of the cluster can be determined arbitrarily, but so that the clustering results are better, determine the cluster center by calculating the median of the patient's overall age attributes and the highest and lowest length of time.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Screen Shot 2022-10-09 at 15 02 44](https://user-images.githubusercontent.com/36381584/194745133-b1adf148-51c8-4bfe-9323-d3491f97a0d1.png)
 
-4.	Calculate the distance of each data to the center of the cluster. To calculate the distance used the Euclidean formula, namely:
+4.	Calculate the distance of each data to the center of the cluster. To calculate the distance used the Euclidean formula:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![Screen Shot 2022-10-09 at 14 50 56](https://user-images.githubusercontent.com/36381584/194744656-fabc0b73-2cdf-450e-871f-f1743e6f2d7f.png)
 
@@ -32,8 +32,7 @@ The following are the step-by-step of the K-Means method used in this project:
 
 ## Demo
 
-Visit:
-- [https://www.elrizwiraswara.com/apps/kmeans](https://www.elrizwiraswara.com/apps/kmeans)
+Visit: [https://www.elrizwiraswara.com/apps/kmeans](https://www.elrizwiraswara.com/apps/kmeans)
 
 Admin credential:
 
