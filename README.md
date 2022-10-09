@@ -1,5 +1,6 @@
 # Analysis of Patient Disease Data Using K-Means Clustering Algorithm
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-orange)](./LICENSE)
+[![Made with Flutter](https://img.shields.io/badge/made%20with-Flutter-blue)](https://flutter.dev/)
 
 
 ## About K-Means Clustering
