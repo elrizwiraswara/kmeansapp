@@ -33,7 +33,7 @@ The following are the step-by-step of the K-Means method used in this project:
 
 ## Demo
 
-Visit: [https://elriztechnology.com/apps/kmeans](https://www.elrizwiraswara.com/apps/kmeans)
+Visit: [https://elriztechnology.com/apps/kmeans](https://www.elriztechnology.com/apps/kmeans)
 
 Admin credential:
 
