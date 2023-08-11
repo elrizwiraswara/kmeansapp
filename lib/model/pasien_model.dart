@@ -1,4 +1,4 @@
-import 'package:kmeansapp/model/penyakit_model.dart';
+import 'penyakit_model.dart';
 
 class PasienModel {
   int id;

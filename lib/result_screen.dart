@@ -1,14 +1,15 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:kmeansapp/config/app_config.dart';
-import 'package:kmeansapp/analyzer.dart';
-import 'package:kmeansapp/extension/round.dart';
-import 'package:kmeansapp/input_screen.dart';
-import 'package:kmeansapp/login_screen.dart';
-import 'package:kmeansapp/model/chart_model.dart';
-import 'package:kmeansapp/theme/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import 'analyzer.dart';
+import 'config/app_config.dart';
+import 'extension/round.dart';
+import 'input_screen.dart';
+import 'login_screen.dart';
+import 'model/chart_model.dart';
+import 'theme/theme.dart';
 
 class ResultScreen extends StatefulWidget {
   ResultScreen({Key? key}) : super(key: key);
@@ -20,9 +21,8 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   @override
   void initState() {
-    super.initState();
-    print('CHECK INIT');
     init();
+    super.initState();
   }
 
   Future<void> init() async {
@@ -57,29 +57,29 @@ class _ResultScreenState extends State<ResultScreen> {
                   children: [
                     appBar(),
                     SizedBox(height: 18),
-                    dataPasien.isNotEmpty
-                        ? body()
-                        : Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height - 100,
-                            child: Center(
-                              child: Text(
-                                '(DATA KOSONG)',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          )
+                    dataPasien.isNotEmpty ? body() : empty(),
                   ],
                 ),
               ),
             )
-          : Center(
-              child: CircularProgressIndicator(),
-            ),
+          : Center(child: CircularProgressIndicator()),
+    );
+  }
+
+  Widget empty() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height - 100,
+      child: Center(
+        child: Text(
+          '(DATA KOSONG)',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.white70,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
     );
   }
 
@@ -93,30 +93,34 @@ class _ResultScreenState extends State<ResultScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Analisa Data Penyakit',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 4),
-              Text(
-                'Pasien Puskesmas Bukit Kayu Kapur',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white54,
-                ),
-              ),
-            ],
-          ),
+          title(),
           userInfo(),
         ],
       ),
+    );
+  }
+
+  Widget title() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Analisa Data Penyakit',
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 4),
+        Text(
+          'Pasien Puskesmas Bukit Kayu Kapur',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.white54,
+          ),
+        ),
+      ],
     );
   }
 
@@ -151,7 +155,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       logoutButton(),
                     ],
                   )
-                : Container()
+                : SizedBox.shrink()
           ],
         ),
         SizedBox(width: 12),
@@ -167,7 +171,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   child: Image.asset(AppConfig.user!.photo),
                 ),
               )
-            : Container()
+            : SizedBox.shrink()
       ],
     );
   }
@@ -785,14 +789,12 @@ class _ResultScreenState extends State<ResultScreen> {
                 children: <Widget>[
                   indicator(
                       color: AppColors.brownLv2,
-                      text:
-                          'Laki-Laki (${dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'L').length} Pasien)',
+                      text: 'Laki-Laki (${dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'L').length} Pasien)',
                       textColor: Colors.white70),
                   const SizedBox(width: 20),
                   indicator(
                       color: AppColors.brownLv3,
-                      text:
-                          'Perempuan (${dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'P').length} Pasien)',
+                      text: 'Perempuan (${dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'P').length} Pasien)',
                       textColor: Colors.white70),
                 ],
               ),
@@ -838,12 +840,7 @@ class _ResultScreenState extends State<ResultScreen> {
         case 0:
           return PieChartSectionData(
             color: AppColors.brownLv2,
-            value: dataPasien
-                .map((e) => e.jenisKelamin)
-                .where((e) => e == 'L')
-                .length
-                .toDouble()
-                .toPrecision(0),
+            value: dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'L').length.toDouble().toPrecision(0),
             title:
                 '${((dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'L').length / dataPasien.length) * 100).toPrecision(0)}%',
             radius: 48,
@@ -856,12 +853,7 @@ class _ResultScreenState extends State<ResultScreen> {
         case 1:
           return PieChartSectionData(
             color: AppColors.brownLv3,
-            value: dataPasien
-                .map((e) => e.jenisKelamin)
-                .where((e) => e == 'P')
-                .length
-                .toDouble()
-                .toPrecision(0),
+            value: dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'P').length.toDouble().toPrecision(0),
             title:
                 '${((dataPasien.map((e) => e.jenisKelamin).where((e) => e == 'P').length / dataPasien.length) * 100).toPrecision(0)}%',
             radius: 48,

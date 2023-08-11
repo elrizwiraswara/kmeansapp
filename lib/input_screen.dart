@@ -1,5 +1,6 @@
 // ignore: avoid_web_libraries_in_flutter, unused_import
 import 'dart:html' as html;
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:excel_dart/excel_dart.dart';
 import 'package:flutter/material.dart';
@@ -36,63 +37,56 @@ class _InputScreenState extends State<InputScreen> {
 
   List<PasienModel> selectedData = [];
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   print('CHECK INIT');
-  //   init();
-  // }
-
-  // Future<void> init() async {
-  //   await getData();
-  //   await initialize();
-  // }
-
-  // Future<void> initialize() async {
-  //   clearData();
-
-  //   await analyze();
-  //   await sumCaseByDiseases();
-  //   await sumHigestCase();
-
-  //   setState(() {});
-  //   printFinalResult();
-  // }
-
   String excelCellHeader(int i) {
-    return i == 0
-        ? 'id'
-        : i == 1
-            ? 'nama'
-            : i == 2
-                ? 'jenis_kelamin'
-                : i == 3
-                    ? 'umur'
-                    : i == 4
-                        ? 'kode_penyakit'
-                        : i == 5
-                            ? 'nama_penyakit'
-                            : i == 6
-                                ? 'lama_mengidap'
-                                : '';
+    if (i == 0) {
+      return 'id';
+    }
+    if (i == 1) {
+      return 'nama';
+    }
+    if (i == 2) {
+      return 'jenis_kelamin';
+    }
+    if (i == 3) {
+      return 'umur';
+    }
+    if (i == 4) {
+      return 'kode_penyakit';
+    }
+    if (i == 5) {
+      return 'nama_penyakit';
+    }
+    if (i == 6) {
+      return 'lama_mengidap';
+    }
+
+    return '';
   }
 
   dynamic excelCellValue(int j, PasienModel data) {
-    return j == 0
-        ? data.id
-        : j == 1
-            ? data.nama
-            : j == 2
-                ? data.jenisKelamin
-                : j == 3
-                    ? data.umur
-                    : j == 4
-                        ? data.penyakitModel.kodePenyakit
-                        : j == 5
-                            ? data.penyakitModel.namaPenyakit
-                            : j == 6
-                                ? data.lamaMengidap
-                                : '';
+    if (j == 0) {
+      return data.id;
+    }
+    if (j == 1) {
+      return data.nama;
+    }
+    if (j == 2) {
+      return data.jenisKelamin;
+    }
+    if (j == 3) {
+      return data.umur;
+    }
+    if (j == 4) {
+      return data.penyakitModel.kodePenyakit;
+    }
+    if (j == 5) {
+      return data.penyakitModel.namaPenyakit;
+    }
+    if (j == 6) {
+      return data.lamaMengidap;
+    }
+
+    return '';
   }
 
   void onTapDownload() async {
@@ -133,9 +127,7 @@ class _InputScreenState extends State<InputScreen> {
           CellIndex.indexByColumnRow(columnIndex: j, rowIndex: i + 1),
         );
 
-        cell.value = j == 0
-            ? dataPenyakit[i].kodePenyakit
-            : dataPenyakit[i].namaPenyakit;
+        cell.value = j == 0 ? dataPenyakit[i].kodePenyakit : dataPenyakit[i].namaPenyakit;
       }
     }
 
@@ -143,29 +135,10 @@ class _InputScreenState extends State<InputScreen> {
     String fileName = 'DATA-PENYAKIT-' + now;
 
     excel.save(fileName: "$fileName.xlsx");
-
-    // // prepare
-    // // final bytes = utf8.encode(text);
-    // final blob = html.Blob([fileBytes]);
-    // final url = html.Url.createObjectUrlFromBlob(blob);
-    // final anchor = html.document.createElement('a') as html.AnchorElement
-    //   ..href = url
-    //   ..style.display = 'none'
-    //   ..download = '$fileName.xlsx';
-    // html.document.body?.children.add(anchor);
-
-    // // download
-    // anchor.click();
-
-    // // cleanup
-    // html.document.body?.children.remove(anchor);
-    // html.Url.revokeObjectUrl(url);
   }
 
   void penyakitValidator() {
-    if (dataPenyakit
-        .map((e) => e.namaPenyakit)
-        .contains(namaPenyakit.text.toUpperCase())) {
+    if (dataPenyakit.map((e) => e.namaPenyakit).contains(namaPenyakit.text.toUpperCase())) {
       penyakitModel = dataPenyakit.firstWhere(
         (e) => e.namaPenyakit == namaPenyakit.text.toUpperCase(),
       );
@@ -204,8 +177,7 @@ class _InputScreenState extends State<InputScreen> {
     dataNo = i;
 
     nama.text = dataPasien[i].nama;
-    jenisKelamin.text =
-        dataPasien[i].jenisKelamin == 'L' ? 'LAKI-LAKI' : 'PEREMPUAN';
+    jenisKelamin.text = dataPasien[i].jenisKelamin == 'L' ? 'LAKI-LAKI' : 'PEREMPUAN';
     umur.text = dataPasien[i].umur.toString();
     namaPenyakit.text = dataPasien[i].penyakitModel.namaPenyakit;
     lamaMengidap.text = dataPasien[i].lamaMengidap.toString();
@@ -495,9 +467,7 @@ class _InputScreenState extends State<InputScreen> {
                       ),
                       SizedBox(width: 6),
                       Text(
-                        editData
-                            ? 'Edit Data No. ${dataNo! + 1}'
-                            : 'Tambah Data',
+                        editData ? 'Edit Data No. ${dataNo! + 1}' : 'Tambah Data',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -756,9 +726,7 @@ class _InputScreenState extends State<InputScreen> {
                         setState(() {});
                       },
                       child: Icon(
-                        namaPenyakit.text.isNotEmpty
-                            ? Icons.clear
-                            : Icons.keyboard_arrow_down_rounded,
+                        namaPenyakit.text.isNotEmpty ? Icons.clear : Icons.keyboard_arrow_down_rounded,
                         size: 20,
                         color: AppColors.blackLv3,
                       ),
@@ -805,18 +773,6 @@ class _InputScreenState extends State<InputScreen> {
                 },
                 noItemsFoundBuilder: (context) {
                   return SizedBox.shrink();
-                  // return const ListTile(
-                  //   dense: true,
-                  //   visualDensity: VisualDensity(vertical: -4),
-                  //   title: Text(
-                  //     '(Empty)',
-                  //     style: TextStyle(
-                  // fontFamily: 'Montserrat',
-                  //         fontSize: 14,
-                  //         color: Colors.white.withOpacity(0.87),
-                  //     ),
-                  //   ),
-                  // );
                 },
               ),
             ],
@@ -1115,9 +1071,7 @@ class _InputScreenState extends State<InputScreen> {
               children: [
                 Icon(
                   Icons.edit_note_rounded,
-                  color: selectedData.length == 1
-                      ? AppColors.yellowLv1
-                      : AppColors.blackLv4.withOpacity(0.50),
+                  color: selectedData.length == 1 ? AppColors.yellowLv1 : AppColors.blackLv4.withOpacity(0.50),
                   size: 13,
                 ),
                 SizedBox(width: 6),
@@ -1125,9 +1079,7 @@ class _InputScreenState extends State<InputScreen> {
                   'Edit',
                   style: TextStyle(
                     fontSize: 11,
-                    color: selectedData.length == 1
-                        ? AppColors.yellowLv1
-                        : AppColors.blackLv4.withOpacity(0.50),
+                    color: selectedData.length == 1 ? AppColors.yellowLv1 : AppColors.blackLv4.withOpacity(0.50),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -1145,9 +1097,8 @@ class _InputScreenState extends State<InputScreen> {
             padding: EdgeInsets.all(6),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: selectedData.length >= 1
-                  ? AppColors.redLv1.withOpacity(0.10)
-                  : AppColors.blackLv3.withOpacity(0.10),
+              color:
+                  selectedData.length >= 1 ? AppColors.redLv1.withOpacity(0.10) : AppColors.blackLv3.withOpacity(0.10),
               borderRadius: BorderRadius.circular(4),
             ),
             child: Row(
@@ -1155,9 +1106,7 @@ class _InputScreenState extends State<InputScreen> {
               children: [
                 Icon(
                   Icons.delete_rounded,
-                  color: selectedData.length >= 1
-                      ? AppColors.redLv1
-                      : AppColors.blackLv4.withOpacity(0.50),
+                  color: selectedData.length >= 1 ? AppColors.redLv1 : AppColors.blackLv4.withOpacity(0.50),
                   size: 13,
                 ),
                 SizedBox(width: 6),
@@ -1165,9 +1114,7 @@ class _InputScreenState extends State<InputScreen> {
                   'Hapus',
                   style: TextStyle(
                     fontSize: 11,
-                    color: selectedData.length >= 1
-                        ? AppColors.redLv1
-                        : AppColors.blackLv4.withOpacity(0.50),
+                    color: selectedData.length >= 1 ? AppColors.redLv1 : AppColors.blackLv4.withOpacity(0.50),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -1192,10 +1139,8 @@ class _InputScreenState extends State<InputScreen> {
         ),
       ),
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            // width: 56,
             margin: EdgeInsets.only(right: 18),
             child: Checkbox(
               activeColor: AppColors.blackLv1,
@@ -1320,14 +1265,12 @@ class _InputScreenState extends State<InputScreen> {
         ),
       ),
       child: Row(
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: EdgeInsets.only(right: 18),
             child: Checkbox(
               activeColor: AppColors.blackLv1,
-              value: dataPasien.isNotEmpty &&
-                  selectedData.length == dataPasien.length,
+              value: dataPasien.isNotEmpty && selectedData.length == dataPasien.length,
               visualDensity: VisualDensity(horizontal: -4, vertical: -4),
               onChanged: (value) {
                 if (value != null) {

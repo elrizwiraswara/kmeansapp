@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kmeansapp/config/app_config.dart';
-import 'package:kmeansapp/theme/theme.dart';
+
+import 'config/app_config.dart';
+import 'theme/theme.dart';
 
 class LoginDialog extends StatelessWidget {
   const LoginDialog({Key? key}) : super(key: key);
@@ -109,10 +110,8 @@ class LoginDialog extends StatelessWidget {
                   SizedBox(height: 28),
                   GestureDetector(
                     onTap: () {
-                      if (username.text.isNotEmpty &&
-                          password.text.isNotEmpty) {
-                        if (username.text == AppConfig.admin.username &&
-                            password.text == AppConfig.admin.password) {
+                      if (username.text.isNotEmpty && password.text.isNotEmpty) {
+                        if (username.text == AppConfig.admin.username && password.text == AppConfig.admin.password) {
                           AppConfig.user = AppConfig.admin;
                           username.clear();
                           password.clear();

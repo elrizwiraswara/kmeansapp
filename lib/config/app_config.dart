@@ -1,4 +1,4 @@
-import 'package:kmeansapp/model/user_model.dart';
+import '../model/user_model.dart';
 
 class AppConfig {
   static late UserModel admin;

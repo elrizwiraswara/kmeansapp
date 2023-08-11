@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kmeansapp/result_screen.dart';
-import 'package:kmeansapp/theme/theme.dart';
+
+import 'result_screen.dart';
+import 'theme/theme.dart';
 
 void main() {
   runApp(MyApp());

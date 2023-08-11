@@ -1,17 +1,19 @@
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:dolumns/dolumns.dart';
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:kmeansapp/config/app_config.dart';
-import 'package:kmeansapp/extension/round.dart';
-import 'package:kmeansapp/model/chart_model.dart';
-import 'package:kmeansapp/model/pasien_model.dart';
-import 'package:kmeansapp/model/penyakit_model.dart';
-import 'package:kmeansapp/model/user_model.dart';
-import 'package:kmeansapp/theme/theme.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+
+import 'config/app_config.dart';
+import 'extension/round.dart';
+import 'model/chart_model.dart';
+import 'model/pasien_model.dart';
+import 'model/penyakit_model.dart';
+import 'model/user_model.dart';
+import 'theme/theme.dart';
 
 Function deepEquality = const DeepCollectionEquality().equals;
 
@@ -39,10 +41,8 @@ void clearData() {
 
 Future<void> getData() async {
   var rawDataUser = await rootBundle.loadString('assets/data/user.json');
-  var rawDataPasien =
-      await rootBundle.loadString('assets/data/data_pasien.json');
-  var rawDataPenyakit =
-      await rootBundle.loadString('assets/data/data_penyakit.json');
+  var rawDataPasien = await rootBundle.loadString('assets/data/data_pasien.json');
+  var rawDataPenyakit = await rootBundle.loadString('assets/data/data_penyakit.json');
 
   var decodedDataUser = json.decode(rawDataUser);
   var decodedDataPasien = json.decode(rawDataPasien) as List;
@@ -51,64 +51,35 @@ Future<void> getData() async {
   AppConfig.admin = UserModel.fromJson(decodedDataUser);
 
   for (var data in decodedDataPasien) {
-    PasienModel model = PasienModel.fromJson(data);
     print('DECODED DATA PASIEN = $data');
+
+    PasienModel model = PasienModel.fromJson(data);
     dataPasien.add(model);
   }
 
   for (var data in decodedDataPenyakit) {
-    PenyakitModel model = PenyakitModel.fromJson(data);
     print('DECODED DATA PENYAKIT = $data');
+
+    PenyakitModel model = PenyakitModel.fromJson(data);
     dataPenyakit.add(model);
   }
 }
 
 Future<void> analyze() async {
   print('[ITERATION ${iterasiDataPenyakit.length + 1} START]');
+
   if (iterasiDataPenyakit.length > 0) {
     List<List<double>> ci = [];
 
-    double c01 = dataPasien
-            .where((e) => e.cluster == 0)
-            .toList()
-            .map((j) => j.umur)
-            .reduce((x, y) => x + y) /
-        dataPasien
-            .where((e) => e.cluster == 0)
-            .map((j) => j.umur)
-            .toList()
-            .length;
-    double c02 = dataPasien
-            .where((e) => e.cluster == 0)
-            .toList()
-            .map((j) => j.lamaMengidap)
-            .reduce((x, y) => x + y) /
-        dataPasien
-            .where((e) => e.cluster == 0)
-            .map((j) => j.lamaMengidap)
-            .toList()
-            .length;
+    double c01 = dataPasien.where((e) => e.cluster == 0).map((j) => j.umur).reduce((x, y) => x + y) /
+        dataPasien.where((e) => e.cluster == 0).map((j) => j.umur).length;
+    double c02 = dataPasien.where((e) => e.cluster == 0).map((j) => j.lamaMengidap).reduce((x, y) => x + y) /
+        dataPasien.where((e) => e.cluster == 0).map((j) => j.lamaMengidap).length;
 
-    double c11 = dataPasien
-            .where((e) => e.cluster == 1)
-            .toList()
-            .map((j) => j.umur)
-            .reduce((x, y) => x + y) /
-        dataPasien
-            .where((e) => e.cluster == 1)
-            .map((j) => j.umur)
-            .toList()
-            .length;
-    double c12 = dataPasien
-            .where((e) => e.cluster == 1)
-            .toList()
-            .map((j) => j.lamaMengidap)
-            .reduce((x, y) => x + y) /
-        dataPasien
-            .where((e) => e.cluster == 1)
-            .map((j) => j.lamaMengidap)
-            .toList()
-            .length;
+    double c11 = dataPasien.where((e) => e.cluster == 1).map((j) => j.umur).reduce((x, y) => x + y) /
+        dataPasien.where((e) => e.cluster == 1).map((j) => j.umur).length;
+    double c12 = dataPasien.where((e) => e.cluster == 1).map((j) => j.lamaMengidap).reduce((x, y) => x + y) /
+        dataPasien.where((e) => e.cluster == 1).map((j) => j.lamaMengidap).length;
 
     ci = [
       [c01.toPrecision(3), c02.toPrecision(3)],
@@ -116,48 +87,36 @@ Future<void> analyze() async {
     ];
 
     print('[NEW CENTROID Ci = $ci]');
+
     calculateEuclideanDistance(ci[0], ci[1]);
   } else {
     List<List<double>> c0 = [
       [
         dataPasien
             .map((e) => e.umur)
-            .sorted(
-                (a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
+            .sorted((a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
             .toDouble(),
-        dataPasien
-            .map((e) => e.lamaMengidap)
-            .reduce((x, y) => x > y ? y : x)
-            .toDouble()
+        dataPasien.map((e) => e.lamaMengidap).reduce((x, y) => x > y ? y : x).toDouble()
       ],
       [
         dataPasien
             .map((e) => e.umur)
-            .sorted(
-                (a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
+            .sorted((a, b) => a.compareTo(b))[((dataPasien.length + 1) / 2).floor()]
             .toDouble(),
-        dataPasien
-            .map((e) => e.lamaMengidap)
-            .reduce((x, y) => x > y ? x : y)
-            .toDouble()
+        dataPasien.map((e) => e.lamaMengidap).reduce((x, y) => x > y ? x : y).toDouble()
       ],
     ];
 
     print('[INIT CENTROID C0 = $c0]');
+
     calculateEuclideanDistance(c0[0], c0[1]);
   }
 }
 
 void calculateEuclideanDistance(List<double> c0, List<double> c1) async {
   for (int i = 0; i < dataPasien.length; i++) {
-    double di1 = sqrt(
-      pow(dataPasien[i].umur - c0[0], 2) +
-          pow(dataPasien[i].lamaMengidap - c0[1], 2),
-    ).toPrecision(3);
-    double di2 = sqrt(
-      pow(dataPasien[i].umur - c1[0], 2) +
-          pow(dataPasien[i].lamaMengidap - c1[1], 2),
-    ).toPrecision(3);
+    double di1 = sqrt(pow(dataPasien[i].umur - c0[0], 2) + pow(dataPasien[i].lamaMengidap - c0[1], 2)).toPrecision(3);
+    double di2 = sqrt(pow(dataPasien[i].umur - c1[0], 2) + pow(dataPasien[i].lamaMengidap - c1[1], 2)).toPrecision(3);
 
     List<double> distance = [di1, di2];
     int cluster = di1.compareTo(di2) == -1 ? 0 : 1;
@@ -198,8 +157,7 @@ void clustering() async {
   }
 
   if (iterasiDataPenyakit.length > 0) {
-    for (PasienModel xb
-        in iterasiDataPenyakit[iterasiDataPenyakit.length - 1]) {
+    for (PasienModel xb in iterasiDataPenyakit[iterasiDataPenyakit.length - 1]) {
       int cluster0 = 0;
       int cluster1 = 0;
 
@@ -213,24 +171,19 @@ void clustering() async {
       oldCluster.add([cluster0, cluster1]);
     }
 
-    if (deepEquality(oldCluster, newCluster) ||
-        (iterasiDataPenyakit.length + 1) >= maxIteration) {
+    if (deepEquality(oldCluster, newCluster) || (iterasiDataPenyakit.length + 1) >= maxIteration) {
       printClusteringResult(newDistance, newCluster);
-      print(
-        '[IS THERE ANY DATA CHANGE? ${!deepEquality(oldCluster, newCluster)}]'
-            .toUpperCase(),
-      );
 
+      print('[IS THERE ANY DATA CHANGE? ${!deepEquality(oldCluster, newCluster)}]'.toUpperCase());
       print('[ITERATION END]');
       print('----------------------------------------------------------------');
+
       // END ITERATION
       return;
     } else {
       printClusteringResult(newDistance, newCluster);
-      print(
-        '[IS THERE ANY DATA CHANGE? ${!deepEquality(oldCluster, newCluster)}]'
-            .toUpperCase(),
-      );
+
+      print('[IS THERE ANY DATA CHANGE? ${!deepEquality(oldCluster, newCluster)}]'.toUpperCase());
 
       iterasiDataPenyakit.add(dataPasien.toList());
 
@@ -257,18 +210,10 @@ Future<void> sumCaseByDiseases() async {
 
       if (isHasAdded) {
         if (dataPasien[i].cluster == 0) {
-          caseByDiseases
-              .where((e) =>
-                  e.x.kodePenyakit == dataPasien[i].penyakitModel.kodePenyakit)
-              .first
-              .c0 += 1;
+          caseByDiseases.where((e) => e.x.kodePenyakit == dataPasien[i].penyakitModel.kodePenyakit).first.c0 += 1;
         }
         if (dataPasien[i].cluster == 1) {
-          caseByDiseases
-              .where((e) =>
-                  e.x.kodePenyakit == dataPasien[i].penyakitModel.kodePenyakit)
-              .first
-              .c1 += 1;
+          caseByDiseases.where((e) => e.x.kodePenyakit == dataPasien[i].penyakitModel.kodePenyakit).first.c1 += 1;
         }
       } else {
         int sumC0 = 0;
@@ -281,9 +226,7 @@ Future<void> sumCaseByDiseases() async {
           sumC1 += 1;
         }
 
-        caseByDiseases.add(
-          ChartModel(dataPasien[i].penyakitModel, sumC0, sumC1),
-        );
+        caseByDiseases.add(ChartModel(dataPasien[i].penyakitModel, sumC0, sumC1));
       }
     }
   }
@@ -298,16 +241,12 @@ Future<void> sumHigestCase() async {
 
   higestCase = cases.reduce((x, y) => x > y ? x : y).toDouble();
 
-  higestCaseC0.addAll(caseByDiseases
-      .where((e) =>
-          e.c0 ==
-          caseByDiseases.map((e) => e.c0).reduce((x, y) => x > y ? x : y))
-      .toList());
-  higestCaseC1.addAll(caseByDiseases
-      .where((e) =>
-          e.c1 ==
-          caseByDiseases.map((e) => e.c1).reduce((x, y) => x > y ? x : y))
-      .toList());
+  higestCaseC0.addAll(
+    caseByDiseases.where((e) => e.c0 == caseByDiseases.map((e) => e.c0).reduce((x, y) => x > y ? x : y)),
+  );
+  higestCaseC1.addAll(
+    caseByDiseases.where((e) => e.c1 == caseByDiseases.map((e) => e.c1).reduce((x, y) => x > y ? x : y)),
+  );
 }
 
 void printClusteringResult(
@@ -330,99 +269,40 @@ void printClusteringResult(
     ]);
   }
 
-  print(
-    dolumnify(
-      printNewData,
-      columnSplitter: ' | ',
-      headerIncluded: true,
-      headerSeparator: '-',
-    ),
-  );
+  print(dolumnify(printNewData, columnSplitter: ' | ', headerIncluded: true, headerSeparator: '-'));
 
   print('----------------------------------------------------------------');
   print('TOTAL ITEMS               = ${dataPasien.length} items');
-  print(
-    'CLUSTER 1                 = ${newCluster.map((e) => e[0]).reduce((x, y) => x + y)} items',
-  );
-  print(
-    'CLUSTER 2                 = ${newCluster.map((e) => e[1]).reduce((x, y) => x + y)} items',
-  );
+  print('CLUSTER 1                 = ${newCluster.map((e) => e[0]).reduce((x, y) => x + y)} items');
+  print('CLUSTER 2                 = ${newCluster.map((e) => e[1]).reduce((x, y) => x + y)} items');
   print('----------------------------------------------------------------');
 }
 
 void printFinalResult() {
   // RESULT
   int totalItemC0 = dataPasien.where((e) => e.cluster == 0).length;
-  double c0Mean = dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.distance![0])
-          .reduce((x, y) => x + y) /
+  double c0Mean = dataPasien.where((e) => e.cluster == 0).map((e) => e.distance![0]).reduce((x, y) => x + y) /
       dataPasien.where((e) => e.cluster == 0).length;
 
   int totalItemC1 = dataPasien.where((e) => e.cluster == 1).length;
-  double c1Mean = dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.distance![1])
-          .reduce((x, y) => x + y) /
+  double c1Mean = dataPasien.where((e) => e.cluster == 1).map((e) => e.distance![1]).reduce((x, y) => x + y) /
       dataPasien.where((e) => e.cluster == 1).length;
 
-  double cenX0c0 = dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.umur)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.umur)
-          .length;
-  double cenX0c1 = dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.umur)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.umur)
-          .length;
-  double cenX1c0 = dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .length;
-  double cenX1c1 = dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .length;
+  double cenX0c0 = dataPasien.where((e) => e.cluster == 0).map((e) => e.umur).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 0).map((e) => e.umur).length;
+  double cenX0c1 = dataPasien.where((e) => e.cluster == 1).map((e) => e.umur).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 1).map((e) => e.umur).length;
+  double cenX1c0 = dataPasien.where((e) => e.cluster == 0).map((e) => e.lamaMengidap).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 0).map((e) => e.lamaMengidap).length;
+  double cenX1c1 = dataPasien.where((e) => e.cluster == 1).map((e) => e.lamaMengidap).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 1).map((e) => e.lamaMengidap).length;
 
   print('TOTAL ITERATIONS          = ${iterasiDataPenyakit.length + 1}');
   print('TOTAL ITEMS               = ${dataPasien.length} items');
-  print(
-    'CLUSTER 1                 = $totalItemC0 items',
-  );
-  print(
-    'CLUSTER 2                 = $totalItemC1 items',
-  );
-  print(
-    'MEAN CLUSTER 1            = ${c0Mean.toPrecision(3)}',
-  );
-  print(
-    'MEAN CLUSTER 2            = ${c1Mean.toPrecision(3)}',
-  );
+  print('CLUSTER 1                 = $totalItemC0 items');
+  print('CLUSTER 2                 = $totalItemC1 items');
+  print('MEAN CLUSTER 1            = ${c0Mean.toPrecision(3)}');
+  print('MEAN CLUSTER 2            = ${c1Mean.toPrecision(3)}');
   print('CENTROID UMUR C0          = ${cenX0c0.toPrecision(3)}');
   print('CENTROID UMUR C1          = ${cenX0c1.toPrecision(3)}');
   print('CENTROID LAMA MENGIDAP C0 = ${cenX1c0.toPrecision(3)}');
@@ -442,26 +322,10 @@ List<ScatterSpot> data() {
     ));
   }
 
-  double cenX0c0 = dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.umur)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.umur)
-          .length;
-  double cenX1c0 = dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 0)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .length;
+  double cenX0c0 = dataPasien.where((e) => e.cluster == 0).map((e) => e.umur).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 0).map((e) => e.umur).length;
+  double cenX1c0 = dataPasien.where((e) => e.cluster == 0).map((e) => e.lamaMengidap).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 0).map((e) => e.lamaMengidap).length;
 
   scatters.add(ScatterSpot(
     cenX0c0,
@@ -470,26 +334,10 @@ List<ScatterSpot> data() {
     radius: pointsRadius,
   ));
 
-  double cenX0c1 = dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.umur)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.umur)
-          .length;
-  double cenX1c1 = dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .reduce((x, y) => x + y) /
-      dataPasien
-          .where((e) => e.cluster == 1)
-          .toList()
-          .map((e) => e.lamaMengidap)
-          .length;
+  double cenX0c1 = dataPasien.where((e) => e.cluster == 1).map((e) => e.umur).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 1).map((e) => e.umur).length;
+  double cenX1c1 = dataPasien.where((e) => e.cluster == 1).map((e) => e.lamaMengidap).reduce((x, y) => x + y) /
+      dataPasien.where((e) => e.cluster == 1).map((e) => e.lamaMengidap).length;
 
   scatters.add(ScatterSpot(
     cenX0c1,
@@ -502,13 +350,18 @@ List<ScatterSpot> data() {
 }
 
 Color pointColor(i) {
-  return i == 0
-      ? AppColors.yellowLv1
-      : i == 1
-          ? AppColors.redLv1
-          : i == 2
-              ? AppColors.whiteLv3
-              : i == 3
-                  ? AppColors.brownLv1
-                  : AppColors.blackLv1;
+  if (i == 0) {
+    return AppColors.yellowLv1;
+  }
+  if (i == 1) {
+    return AppColors.redLv1;
+  }
+  if (i == 2) {
+    return AppColors.whiteLv3;
+  }
+  if (i == 3) {
+    return AppColors.brownLv1;
+  }
+
+  return AppColors.blackLv1;
 }

@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 // App Theme
 ThemeData appTheme(BuildContext context) {
   return ThemeData(
-    backgroundColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle.dark,
@@ -45,7 +44,7 @@ class AppColors {
     },
   );
 
-  // App Color
+  // App Colors
   static const Color blackLv1 = Color(0xFF252a2e);
   static const Color blackLv2 = Color(0xFF303439);
   static const Color blackLv3 = Color(0xFF585e63);
